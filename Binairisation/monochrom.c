@@ -97,6 +97,54 @@ void grayscale(SDL_Surface *image)
     SDL_UnlockSurface(image);
 }
 
+int* Create_Matrix(SDL_Surface *image)
+{
+    SDL_LockSurface(image);
+    Uint32 pixel;
+    Uint8 r;
+    Uint8 g;
+    Uint8 b;
+    Uint8 a;
+    unsigned long i = 0;
+    unsigned long x;
+    unsigned long y;
+    unsigned long h = image->h;
+    unsigned long w = image->w;
+    int size = h*w;
+    int matrix [size];
+    for (int i = 0; i < size; ++i) {
+        matrix[i] = 0;
+    }
+    for (y = 0; y < h; y++)
+    {
+        for (x = 0; x < w; x++)
+        {
+            pixel = get_pixel(image,x,y);
+            SDL_GetRGBA(pixel, image->format, &r, &g, &b, &a);
+            if (r == 0)
+            {
+                matrix[i]= 0;
+            }
+            else
+            {
+                matrix[i]=1;
+            }
+            i++;
+        }
+
+    }
+    for (int i = 0; i<size;i++)
+    {
+        printf("%d",matrix[i]);
+        if(i%w ==0)
+        {
+            printf("\n");
+        }
+    }
+    SDL_UnlockSurface(image);
+    int* PointerToMatrix = matrix;
+    return PointerToMatrix;
+}
 
 void black_white (SDL_Surface *image)
 {
@@ -149,6 +197,7 @@ int main()
     wait_for_keypressed();
     black_white(image_surface);
     update_surface(screen_surface,image_surface);
+    Create_Matrix(image_surface);
     wait_for_keypressed();
     SDL_FreeSurface(image_surface);
     SDL_FreeSurface(screen_surface);
