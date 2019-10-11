@@ -132,6 +132,9 @@ void black_white (SDL_Surface *image)
     SDL_UnlockSurface(image);
 }
 
+
+
+
 int main()
 {
     SDL_Surface* image_surface;
