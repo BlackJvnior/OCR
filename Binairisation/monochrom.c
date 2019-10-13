@@ -123,11 +123,11 @@ int* Create_Matrix(SDL_Surface *image)
             SDL_GetRGBA(pixel, image->format, &r, &g, &b, &a);
             if (r == 0)
             {
-                matrix[i]= 0;
+                matrix[i]= 1;
             }
             else
             {
-                matrix[i]=1;
+                matrix[i]=0;
             }
             i++;
         }
@@ -136,7 +136,7 @@ int* Create_Matrix(SDL_Surface *image)
     for (int i = 0; i<size;i++)
     {
         printf("%d",matrix[i]);
-        if(i%w ==0)
+        if((i+1)%w ==0)
         {
             printf("\n");
         }
