@@ -165,7 +165,7 @@ void black_white (SDL_Surface *image)
             pixel = get_pixel(image,x,y);
             SDL_GetRGBA(pixel, image->format, &r, &g, &b, &a);
             Uint8 new_color;
-            if (r<=125)
+            if (r<=127)
             {
                 new_color=0;
             } else
