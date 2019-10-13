@@ -14,3 +14,4 @@ monochrom.o: pixel_operations.h
 clean:
 	${RM} *.o
 	${RM} *.d
+	${RM} *.idea
