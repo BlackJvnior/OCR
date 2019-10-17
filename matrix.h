@@ -1,8 +1,6 @@
 #ifndef OCR_MATRIX_H
 #define OCR_MATRIX_H
 
-#include "image.h"
-
 
 /*****************************************************/
 /*                   INITS                           */
