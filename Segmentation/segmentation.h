@@ -1,6 +1,6 @@
 #ifndef SEGMENTATION_H_
 #define SEGMENTATION_H_
-#include "mysdl.h"
+#include "../Binairisation/pixel_operations.h"
 
 struct letter
 {

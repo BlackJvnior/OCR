@@ -2,16 +2,22 @@ CC=gcc
 
 CPPFLAGS= `pkg-config --cflags sdl` -MMD
 CFLAGS= -Wall -Wextra -Werror -std=c99 -O3
-LDLIBS= `pkg-config --libs sdl` -lSDL_image
+LDFLAGS=
+LDLIBS= `pkg-config --libs sdl` -lSDL_image -lm
 
-all: monochrom
+SRC= pixel_operations.c monochrom.c main.c
+OBJ= ${SRC:.c=.o}
+DEP= ${SRC:.c=.d}
 
+all: main
 
-monochrom: pixel_operations.o monochrom.o
-
-monochrom.o: pixel_operations.h
+main: ${OBJ}
 
 clean:
-	${RM} *.o
-	${RM} *.d
-	${RM} *.idea
+	${RM} ${OBJ}
+	${RM} ${DEP}
+	${RM} main
+
+.PHONY: clean
+
+-include ${DEP}
