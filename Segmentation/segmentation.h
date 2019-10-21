@@ -1,51 +1,40 @@
-#ifndef OCR_SEGMENTATION_H
-#define OCR_SEGMENTATION_H
+#ifndef SEGMENTATION_H_
+#define SEGMENTATION_H_
+#include "mysdl.h"
 
-#include "queue.h"
+struct letter
+{
+  int new_line;
+  int space_after;
+  int coord_x [2];
+  int coord_y [2];
+  int height; //int coord_topleft
+  int width; //int coord_botright
+  double *mat; //Contains the binarized height*width letter in 0 and 1s
+};
 
-/*************************************************************/
-/*                       SEGMENTATION                        */
-/*************************************************************/
-
-// Main segmentation function
-Queue *Segmentation(int **matrix, int h, int w);
-
-// Applies RLSA algorithm on matrix
-// Links close characters together
-// To simplify bloc
-void RLSA(int **matrix, int h, int w);
-
-// Returns a matrix with horizontal links between close chars
-int** RLSAw(int **matrix, int h, int w);
-
-// Returns a matrix with vertical links between close chars
-int** RLSAh(int **matrix, int h, int w);
-
-// Cuts matrix in horizontal blocks considering the links in rlsa matrix
-void CutInBlockH(int** matrix, int **rlsa, int h, int w);
-
-// Cuts matrix in vertical blocks
-void CutInBlockW(int** matrix, int **rlsa, int h, int w1, int w2);
-
-// Cuts matrix in lines of characters and sends them
-// to CutInChar with the corresponding histogram
-void CutInLine(int **matrix, int *histogram, int h, int w);
-
-// Cutes line from h1 to h2 in "matrix" in characters
-// and puts them in the queue
-void CutInChar(int **matrix, int *histo, int h1, int h2, int w);
-
-
-// Enqueues the matrix between h1 / h2 and w1 / w2 in queue
-void EnqueueMatrix(int **matrix, int h1, int h2, int w1, int w2);
-
-// Returns the average white spaces in the histogram
-float AverageSpace(int* histogram, int t);
-
-
-// TEST FUNCTION
-// Shows result of segmentation
-// Returns elements of the queue in a char array
-char *ShowSegmentation();
-
+struct letter* init_letter(int topleft_x, int botright_x, int botright_y,
+    SDL_Surface* img);
+void binarize_letter(SDL_Surface* img, struct letter* l);
+void char_detection(SDL_Surface* img, int list[], int res[]);
+SDL_Surface* Display_Character_Boxes(SDL_Surface* img, int startlines[],
+        int columns[]);
+int Line_Detection(SDL_Surface* img, int lines[]);
+SDL_Surface* DisplayLines (SDL_Surface* img, int y[], int nb_elts);
+SDL_Surface* text_blocks(SDL_Surface* img, int scale, int lines[], int cols[]);
+SDL_Surface* box_letters(SDL_Surface* img, int lines[], int cols[]);
+SDL_Surface* draw_line(SDL_Surface* img, int start_x, int end_x, int y);
+SDL_Surface* draw_column(SDL_Surface* img, int start_y, int end_y, int x);
+int checklines(int l[], int nb_elts, int res[]);
+SDL_Surface* whole_segmentation(SDL_Surface* img);
+int get_number_letters(SDL_Surface* img, int cols[]);
+int get_number_lines(SDL_Surface* img, int lines[]);
+struct letter **create_letter_list(SDL_Surface* img, int lines[], int cols[]);
+void print_letter(struct letter *l);
+struct letter_bin *resize_image(double inputs[], double resized_inputs[],
+    int width , int height);
+int threshold(struct letter **list_let, int len);
+void space_mng(struct letter **list_let, int nb_let);
+void resizePixels(double pixels[], double res[], int w1,int h1,int w2,int h2);
+void center_letter(struct letter *src, double dst[]);
 #endif
