@@ -1,9 +1,3 @@
-/*
-**  OCR 404
-**  file: main.c
-**  description: link all the parts together and run everything
-*/
-
 #include <gtk/gtk.h>
 #include <err.h>
 #include <SDL/SDL.h>
@@ -129,7 +123,7 @@ int main(int argc, char *argv[])
   window = create_window();
   icon = create_pixbuf();
   gtk_window_set_icon(GTK_WINDOW(window), icon);
-  gtk_window_set_default_size(GTK_WINDOW(window), 1920, 1080);
+  gtk_window_set_default_size(GTK_WINDOW(window), 200, 200);
   gtk_widget_show_all(window);
   gtk_main();
   return 0;

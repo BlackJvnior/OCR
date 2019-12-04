@@ -19,7 +19,7 @@ SDL_Surface *whole_segmentation(SDL_Surface *img)
     columns[x] = -1;
   char_detection(img, lines_cleaned, columns);
   int nb_letters = get_number_letters(img, columns);
-  printf("Cette image possède %i charactères\n", nb_letters);
+  printf("Cette image possède %i caractères\n", nb_letters);
   int nb_lines = get_number_lines(img, lines_cleaned);
   printf("Elle possède aussi %i lignes, d'après Ocre(e) ( ͡° ͜ʖ ͡°) \n", nb_lines);
   

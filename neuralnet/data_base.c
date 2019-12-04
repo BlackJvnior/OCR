@@ -49,7 +49,7 @@ void train(struct NN *MyNet, struct letter **l, int nb_letters)
   {
     double resul_mat[256];
     resizePixels(l[i]->mat, resul_mat, l[i]->width, l[i]->height, 16, 16);
-    /*int max = l[i]->height > l[i]->width ? l[i]->height : l[i]->width;
+    int max = l[i]->height > l[i]->width ? l[i]->height : l[i]->width;
 
     for (int n = 0; n < max; n++)
       {
@@ -68,7 +68,7 @@ void train(struct NN *MyNet, struct letter **l, int nb_letters)
         }
         printf("|\n");
       }
-      printf("\n");*/
+      printf("\n");
     backprop(MyNet, resul_mat, output_train[i]);
   }
   for (int j = 0; j < nb_letters; j++)

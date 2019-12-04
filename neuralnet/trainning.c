@@ -1,11 +1,11 @@
-//#include <stdlib.h>
-//#include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
 #include <math.h>
 #include <assert.h>
 
-//#include "neural.h"
-//#include "loaderNN.h"
+#include "neural.h"
+#include "loaderNN.h"
 #include "data_base.h"
 
 void XOR_NN(struct NN *MyNet, size_t iter, double learning_rate)
