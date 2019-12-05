@@ -1,5 +1,8 @@
-//#include <stdio.h>
-//#include <stdlib.h>
+#ifndef DATA_BASE_H
+#define DATA_BASE_H
+
+#include <stdio.h>
+#include <stdlib.h>
 #include "../mysdl/mysdl.h"
 #include "loaderNN.h"
 #include "../segmentation/segmentation.h"
@@ -15,3 +18,5 @@ struct letter **init_database(char *filename);
 //double *get_database_in(char *file);
 
 void train(struct NN *MyNet, struct letter **l, int nb_letters);
+
+#endif
