@@ -55,7 +55,7 @@ GtkWidget *create_window()
 
   /* Set up the UI */
   window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title(GTK_WINDOW(window), "==> OCR(e) <==");
+  gtk_window_set_title(GTK_WINDOW(window), "OCR(E)");
 
   box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
   openf = gtk_button_new_with_label("OUVRIR IMAGE");
@@ -63,7 +63,7 @@ GtkWidget *create_window()
 
   // Create the first window with the background image
   image = gtk_image_new_from_file("images/folder.png");
-
+  
   /* Create the widget of the image */
   gtk_box_pack_start(GTK_BOX(box), image, TRUE, TRUE, 0);
   /* Create the widget of the open file button */
